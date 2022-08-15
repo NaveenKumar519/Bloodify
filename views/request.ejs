@@ -1,0 +1,45 @@
+<%- include("./partials/header") %>
+
+        <div class="stock">
+            <h1>Available Blood Units</h1>
+            <table class="customers">
+                <tr>
+                  <th>Blood Group</th>
+                  <th>RH Factor</th>
+                  <th>Units</th>
+                </tr>
+                <% for(var i=0; i<bloodStock.length; i++){ %>
+                <tr>
+                  <td><%= bloodStock[i].bloodGroup%></td>
+                  <td><%= bloodStock[i].rhFactor%></td>
+                  <td><%= bloodStock[i].units%> units</td>
+                </tr>
+                <% } %>
+              </table>
+        </div>
+    <div class="requestform ">
+        <div class="form">
+            <form action="/request" method="POST">
+                <input type="text" name="name" value="<%= currentUser.username %>"><br>
+                <input type="text" name="aadhar" placeholder="enter your aadhar no" minlength="12" maxlength="12" required ><br>
+                <input type="number" name="units" placeholder="how many units of blood do you want to donate" min=1 required><br>
+                <label for="bg">Choose your blood group</label>
+                <select name="bloodGroup" id="bg" required>
+                    <option value="">none</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="O">O</option>
+                    <option value="AB">AB</option>
+                </select><br>
+                <label for="rh">RH facter</label>
+                <select name="rhFactor" id="rh" required>
+                    <option value="">none</option>
+                    <option value="positive">+</option>
+                    <option value="negative">-</option>
+                </select><br>
+                <button>request</button>
+            </form>
+        </div>
+    </div>
+    
+    <%- include("./partials/footer") %>
